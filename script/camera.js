@@ -6,7 +6,7 @@
 	License: MIT
 */
 
-var camera = (function() {
+var camera = (function () {
 	var options;
 	var video, canvas, context;
 	var renderTimer;
@@ -22,19 +22,17 @@ var camera = (function() {
 		window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
 
 		if (navigator.getUserMedia) {
-			navigator.getUserMedia({
-			    video: { facingMode: { exact: "environment" },
-			}, function(stream) {
-				options.onSuccess();
+			navigator.getUserMedia({ video: {facingMode: { exact: "environment" }}}, function(stream) {
+					options.onSuccess();
 
-				if (video.mozSrcObject !== undefined) { // hack for Firefox < 19
-					video.mozSrcObject = stream;
-				} else {
-					video.srcObject = stream;
-				}
+					if (video.mozSrcObject !== undefined) { // hack for Firefox < 19
+						video.mozSrcObject = stream;
+					} else {
+						video.srcObject = stream;
+					}
 
-				initCanvas();
-			}, options.onError);
+					initCanvas();
+				}, options.onError);
 		} else {
 			options.onNotSupported();
 		}
@@ -57,7 +55,7 @@ var camera = (function() {
 	function startCapture() {
 		video.play();
 
-		renderTimer = setInterval(function() {
+		renderTimer = setInterval(function () {
 			try {
 				context.drawImage(video, 0, 0, video.width, video.height);
 				options.onFrame(canvas);
@@ -83,8 +81,8 @@ var camera = (function() {
 	}
 
 	return {
-		init: function(captureOptions) {
-			var doNothing = function(){};
+		init: function (captureOptions) {
+			var doNothing = function () { };
 
 			options = captureOptions || {};
 
