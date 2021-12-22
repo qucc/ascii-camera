@@ -23,8 +23,7 @@ var camera = (function() {
 
 		if (navigator.getUserMedia) {
 			navigator.getUserMedia({
-				video: true,
-				audio: false,
+			    video: { facingMode: { exact: "environment" },
 			}, function(stream) {
 				options.onSuccess();
 
